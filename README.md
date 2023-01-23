@@ -36,5 +36,9 @@ As a user I want the Ability to </h4>
 ![Alt text](imageProject/thumbnail%20(3).jpeg)
 
 ![Alt text](imageProject/thumbnail%20(4).jpeg)
+</br>
+<h4>Entity Relationship Diagram</h4>
+
+<p>The Diagram below shows the relationships bteween the user and visitors with the actual web App. Users are authorized to make posts and comments.Post owner can delete the comments as well. Anybody has the ability to read the trending news.
 
 ![Alt text](imageProject/thumbnail.jpeg)

@@ -29,9 +29,11 @@ As a user I want the Ability to </h4>
 5.Make Comments </br>
 6.change passwords
 
+![Alt text](imageProject/thumbnail%20(2).jpeg)
+
 ![Alt text](imageProject/thumbnail%20(1).jpeg)
 
-![Alt text](imageProject/thumbnail%20(2).jpeg)
+
 
 ![Alt text](imageProject/thumbnail%20(3).jpeg)
 

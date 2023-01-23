@@ -28,12 +28,13 @@ As a user I want the Ability to </h4>
 4.Make a blog Post</br>                      
 5.Make Comments </br>
 6.change passwords
-![Alt text](IMG_3887.png)
 
-![Alt text](IMG_3888.png)
+![Alt text](imageProject/thumbnail%20(1).jpeg)
 
-![Alt text](IMG_3889.png)
+![Alt text](imageProject/thumbnail%20(2).jpeg)
 
-![Alt text](IMG_3890.png)
+![Alt text](imageProject/thumbnail%20(3).jpeg)
 
-![Alt text](ERD_3891.png)
+![Alt text](imageProject/thumbnail%20(4).jpeg)
+
+![Alt text](imageProject/thumbnail.jpeg)

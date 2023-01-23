@@ -25,13 +25,15 @@ As a user I want the Ability to </h4>
 1.signup</br>
 2.signin</br>
 3.Read the Trending News</br>
-4.Make a blog Post</br>
+4.Make a blog Post</br>                      
 5.Make Comments </br>
 6.change passwords
-![Images](IMG_3887.png)
+![Alt text](IMG_3887.png)
 
-![Images](IMG_3888.png)
+![Alt text](IMG_3888.png)
 
-![Images](IMG_3889.png)
+![Alt text](IMG_3889.png)
 
-![Images](IMG_3890.png)
+![Alt text](IMG_3890.png)
+
+![Alt text](ERD_3891.png)

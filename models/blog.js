@@ -13,7 +13,7 @@ const commentSchema = require('./comment')
 const { Schema, model } = mongoose
 
 // fruits schema
-const fruitSchema = new Schema({
+const blogSchema = new Schema({
     name: {
         type: String
     },
@@ -37,9 +37,9 @@ const fruitSchema = new Schema({
 // the model method takes two arguments
 // the first is what we call our model
 // the second is the schema used to build the model
-const Fruit = model('Fruit', fruitSchema)
+const Blog = model('Blog', blogSchema)
 
 //////////////////////////
 //// Export our Model ////
 //////////////////////////
-module.exports = Fruit
+module.exports = Blog

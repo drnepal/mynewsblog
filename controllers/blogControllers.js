@@ -2,7 +2,7 @@
 //// Import Dependencies         ////
 /////////////////////////////////////
 const express = require('express')
-const Fruit = require('../models/fruit')
+const Blog = require('../models/blog')
 
 /////////////////////////////////////
 //// Create Router               ////
@@ -14,20 +14,20 @@ const router = express.Router()
 //////////////////////////////
 
 // INDEX route 
-// Read -> finds and displays all fruits
+// Read -> finds and displays all blog
 router.get('/', (req, res) => {
     const { username, loggedIn, userId } = req.session
-    // find all the fruits
-    Fruit.find({})
+    // find all the blog
+    Blog.find({})
         // there's a built in function that runs before the rest of the promise chain
         // this function is called populate, and it's able to retrieve info from other documents in other collections
         .populate('owner', 'username')
         .populate('comments.author', '-password')
         // send json if successful
-        .then(fruits => { 
-            // res.json({ fruits: fruits })
+        .then(blog => { 
+            // res.json({ blog: blog })
             // now that we have liquid installed, we're going to use render as a response for our controllers
-            res.render('fruits/index', { fruits, username, loggedIn, userId })
+            res.render('blog/index', { blog, username, loggedIn, userId })
         })
         // catch errors if they occur
         .catch(err => {
@@ -38,9 +38,9 @@ router.get('/', (req, res) => {
 })
 
 // GET for the new page
-// shows a form where a user can create a new fruit
+// shows a form where a user can create a new blog
 router.get('/new', (req, res) => {
-    res.render('fruits/new', { ...req.session })
+    res.render('blog/new', { ...req.session })
 })
 
 // CREATE route
@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
     // here, we'll have something called a request body
     // inside this function, that will be called req.body
     // we want to pass our req.body to the create method
-    // we want to add an owner field to our fruit
+    // we want to add an owner field to our blog
     // luckily for us, we saved the user's id on the session object, so it's really easy for us to access that data
     req.body.owner = req.session.userId
 
@@ -60,15 +60,15 @@ router.post('/', (req, res) => {
     req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
     const newFruit = req.body
     console.log('this is req.body aka newFruit, after owner\n', newFruit)
-    Fruit.create(newFruit)
-        // send a 201 status, along with the json response of the new fruit
-        .then(fruit => {
+    Blog.create(newFruit)
+        // send a 201 status, along with the json response of the new blog
+        .then(blog => {
             // in the API server version of our code we sent json and a success msg
-            // res.status(201).json({ fruit: fruit.toObject() })
+            // res.status(201).json({ blog: blog.toObject() })
             // we could redirect to the 'mine' page
-            // res.status(201).redirect('/fruits/mine')
-            // we could also redirect to the new fruit's show page
-            res.redirect(`/fruits/${fruit.id}`)
+            // res.status(201).redirect('/blog/mine')
+            // we could also redirect to the new blog's show page
+            res.redirect(`/blog/${blog.id}`)
         })
         // send an error if one occurs
         .catch(err => {
@@ -80,16 +80,16 @@ router.post('/', (req, res) => {
 
 // GET route
 // Index -> This is a user specific index route
-// this will only show the logged in user's fruits
+// this will only show the logged in user's blog
 router.get('/mine', (req, res) => {
-    // find fruits by ownership, using the req.session info
-    Fruit.find({ owner: req.session.userId })
+    // find blog by ownership, using the req.session info
+    Blog.find({ owner: req.session.userId })
         .populate('owner', 'username')
         .populate('comments.author', '-password')
-        .then(fruits => {
-            // if found, display the fruits
-            // res.status(200).json({ fruits: fruits })
-            res.render('fruits/index', { fruits, ...req.session })
+        .then(blog => {
+            // if found, display the blog
+            // res.status(200).json({ blog: blog })
+            res.render('blog/index', { blog, ...req.session })
         })
         .catch(err => {
             // otherwise throw an error
@@ -99,18 +99,18 @@ router.get('/mine', (req, res) => {
         })
 })
 
-// GET route for getting json for specific user fruits
+// GET route for getting json for specific user blog
 // Index -> This is a user specific index route
-// this will only show the logged in user's fruits
+// this will only show the logged in user's blog
 router.get('/json', (req, res) => {
-    // find fruits by ownership, using the req.session info
-    Fruit.find({ owner: req.session.userId })
+    // find blog by ownership, using the req.session info
+    Blog.find({ owner: req.session.userId })
         .populate('owner', 'username')
         .populate('comments.author', '-password')
-        .then(fruits => {
-            // if found, display the fruits
-            res.status(200).json({ fruits: fruits })
-            // res.render('fruits/index', { fruits, ...req.session })
+        .then(blog => {
+            // if found, display the blog
+            res.status(200).json({ blog: blog })
+            // res.render('blog/index', { blog, ...req.session })
         })
         .catch(err => {
             // otherwise throw an error
@@ -120,13 +120,13 @@ router.get('/json', (req, res) => {
 })
 
 // GET request -> edit route
-// shows the form for updating a fruit
+// shows the form for updating a blog
 router.get('/edit/:id', (req, res) => {
-    // because we're editing a specific fruit, we want to be able to access the fruit's initial values. so we can use that info on the page.
+    // because we're editing a specific blog, we want to be able to access the blog's initial values. so we can use that info on the page.
     const fruitId = req.params.id
-    Fruit.findById(fruitId)
-        .then(fruit => {
-            res.render('fruits/edit', { fruit, ...req.session })
+    Blog.findById(fruitId)
+        .then(blog => {
+            res.render('blog/edit', { blog, ...req.session })
         })
         .catch(err => {
             res.redirect(`/error?error=${err}`)
@@ -134,18 +134,18 @@ router.get('/edit/:id', (req, res) => {
 })
 
 // PUT route
-// Update -> updates a specific fruit(only if the fruit's owner is updating)
+// Update -> updates a specific blog(only if the blog's owner is updating)
 router.put('/:id', (req, res) => {
     const id = req.params.id
     req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
-    Fruit.findById(id)
-        .then(fruit => {
-            // if the owner of the fruit is the person who is logged in
-            if (fruit.owner == req.session.userId) {
+    Blog.findById(id)
+        .then(blog => {
+            // if the owner of the blog is the person who is logged in
+            if (blog.owner == req.session.userId) {
                 // send success message
                 // res.sendStatus(204)
-                // update and save the fruit
-                return fruit.updateOne(req.body)
+                // update and save the blog
+                return blog.updateOne(req.body)
             } else {
                 // otherwise send a 401 unauthorized status
                 // res.sendStatus(401)
@@ -153,8 +153,8 @@ router.put('/:id', (req, res) => {
             }
         })
         .then(() => {
-            // console.log('the fruit?', fruit)
-            res.redirect(`/fruits/mine`)
+            // console.log('the blog?', blog)
+            res.redirect(`/blog/mine`)
         })
         .catch(err => {
             console.log(err)
@@ -164,17 +164,17 @@ router.put('/:id', (req, res) => {
 })
 
 // DELETE route
-// Delete -> delete a specific fruit
+// Delete -> delete a specific blog
 router.delete('/:id', (req, res) => {
     const id = req.params.id
-    Fruit.findById(id)
-        .then(fruit => {
-            // if the owner of the fruit is the person who is logged in
-            if (fruit.owner == req.session.userId) {
+    Blog.findById(id)
+        .then(blog => {
+            // if the owner of the blog is the person who is logged in
+            if (blog.owner == req.session.userId) {
                 // send success message
                 // res.sendStatus(204)
-                // delete the fruit
-                return fruit.deleteOne()
+                // delete the blog
+                return blog.deleteOne()
             } else {
                 // otherwise send a 401 unauthorized status
                 // res.sendStatus(401)
@@ -182,7 +182,7 @@ router.delete('/:id', (req, res) => {
             }
         })
         .then(() => {
-            res.redirect('/fruits/mine')
+            res.redirect('/blog/mine')
         })
         .catch(err => {
             console.log(err)
@@ -197,12 +197,12 @@ router.get('/:id', (req, res) => {
     // get the id -> save to a variable
     const id = req.params.id
     // use a mongoose method to find using that id
-    Fruit.findById(id)
+    Blog.findById(id)
         .populate('comments.author', 'username')
-        // send the fruit as json upon success
-        .then(fruit => {
-            // res.json({ fruit: fruit })
-            res.render('fruits/show.liquid', {fruit, ...req.session})
+        // send the blog as json upon success
+        .then(blog => {
+            // res.json({ blog: blog })
+            res.render('blog/show.liquid', {blog, ...req.session})
         })
         // catch any errors
         .catch(err => {

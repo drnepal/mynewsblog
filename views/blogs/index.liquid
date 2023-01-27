@@ -1,26 +1,26 @@
 {% layout 'layout.liquid' %}
 {% block content %}
     <!-- we need to account for two conditions here -->
-    <!-- first, if we have fruits in our array -->
-    <!-- second, if there are no fruits in the array -->
-    {% if fruits.length > 0 %}
+    <!-- first, if we have blogs in our array -->
+    <!-- second, if there are no blogs in the array -->
+    {% if blogs.length > 0 %}
         <div class="container-md">
             <h2>All Fruits</h2>
             <div class="row">
-                {% for fruit in fruits %}
+                {% for blog in blogs %}
                     <div class="card me-3 mb-3" style="width: 18rem;">
-                        <h5 class="card-header">{{fruit.name}}</h5>
+                        <h5 class="card-header">{{blog.name}}</h5>
                         <div class="card-body">
                             <h5 class="card-title">
-                                {% if fruit.readyToEat %}
+                                {% if blog.readyToEat %}
                                     Ripe
                                 {% else %}
                                     Not Ripe
                                 {% endif %}
                             </h5>
-                            <p class="card-text">The color of this {{fruit.name}} is {{fruit.color}}</p>
-                            <div class="colorBox mb-2" style="background-color: {{fruit.color}}"></div>
-                            <a href="/fruits/{{fruit.id}}" class="btn btn-info">View {{fruit.name}}</a>
+                            <p class="card-text">The color of this {{blog.name}} is {{blog.color}}</p>
+                            <div class="colorBox mb-2" style="background-color: {{blog.color}}"></div>
+                            <a href="/blogs/{{blog.id}}" class="btn btn-info">View {{blog.name}}</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -28,7 +28,7 @@
         </div>
     {% else %}
         <div class="container-md">
-            <h2>No fruits yet... Go create some!</h2>
+            <h2>No blogs yet... Go create some!</h2>
         </div>
     {% endif %}
 {% endblock %}

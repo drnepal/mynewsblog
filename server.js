@@ -47,6 +47,9 @@ app.use('/blogs', BlogRouter)
 app.use('/comments', CommentRouter)
 app.use('/users', UserRouter)
 
+///////////
+
+
 // this renders our error page
 // gets the error from a url req query
 app.get('/error', (req, res) => {

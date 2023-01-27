@@ -22,7 +22,7 @@ const router = express.Router()
 // bc we have to refer to a blog, we'll do that in the simplest way via the route
 router.post('/:fruitId', (req, res) => {
     // first we get the fruitId and save to a variable
-    const fruitId = req.params.fruitId
+    const blogId = req.params.blogId
     // then we'll protect this route against non-logged in users
     console.log('this is the session\n', req.session)
     if (req.session.loggedIn) {
@@ -32,7 +32,7 @@ router.post('/:fruitId', (req, res) => {
         // saves the req.body to a variable for easy reference later
         const theComment = req.body
         // find a specific blog
-        Blog.findById(fruitId)
+        Blog.findById(blogId)
             .then(blog => {
                 // create the comment(with a req.body)
                 blog.comments.push(theComment)
@@ -64,7 +64,7 @@ router.delete('/delete/:fruitId/:commId', (req, res) => {
     // const commId = req.params.commId
     const { fruitId, commId } = req.params
     // get the blog
-    Blog.findById(fruitId)
+    Blog.findById(fruitd)
         .then(blog => {
             // get the comment, we'll use the built in subdoc method called .id()
             const theComment = blog.comments.id(commId)
@@ -77,7 +77,7 @@ router.delete('/delete/:fruitId/:commId', (req, res) => {
                     theComment.remove()
                     blog.save()
                     // res.sendStatus(204) //send 204 no content
-                    res.redirect(`/fruits/${blog.id}`)
+                    res.redirect(`/blogs/${blog.id}`)
                 } else {
                     // otherwise send a 401 - unauthorized status
                     // res.sendStatus(401)

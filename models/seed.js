@@ -16,20 +16,95 @@ db.on('open', () => {
     // array of starter resources(blogs)
     const Blog = [
         {
+          title: 'bp1',
+          content: 'This is the content of the first blog post.',
+          author: 'bw1'
+        },
+        {
+          title: 'bp2',
+          content: 'This is the content of the second blog post.',
+          author: 'bw1'
+        },
+        {
+          title: 'bp3',
+          content: 'This is the content of the third blog post.',
+          author: 'bw3 '
+        },
+        {
           title: 'First Blog Post',
           content: 'This is the content of the first blog post.',
-          author: 'John Doe'
+          author: 'bw4'
         },
         {
-          title: 'Second Blog Post',
+          title: 'bp4',
           content: 'This is the content of the second blog post.',
-          author: 'Jane Smith'
+          author: 'bw5'
         },
         {
-          title: 'Third Blog Post',
+          title: 'bp5',
           content: 'This is the content of the third blog post.',
-          author: 'Bob Johnson'
+          author: 'bw5'
         },
+        {
+          title: 'bp6',
+          content: 'This is the content of the first blog post.',
+          author: 'bw6'
+        },
+        {
+          title: 'bp7',
+          content: 'This is the content of the second blog post.',
+          author: 'bw7'
+        },
+        // {
+        //   title: 'Third Blog Post',
+        //   content: 'This is the content of the third blog post.',
+        //   author: 'Bob Johnson'
+        // },
+        // {
+        //   title: 'First Blog Post',
+        //   content: 'This is the content of the first blog post.',
+        //   author: 'John Doe'
+        // },
+        // {
+        //   title: 'Second Blog Post',
+        //   content: 'This is the content of the second blog post.',
+        //   author: 'Jane Smith'
+        // },
+        // {
+        //   title: 'Third Blog Post',
+        //   content: 'This is the content of the third blog post.',
+        //   author: 'Bob Johnson'
+        // },
+        // {
+        //   title: 'First Blog Post',
+        //   content: 'This is the content of the first blog post.',
+        //   author: 'John Doe'
+        // },
+        // {
+        //   title: 'Second Blog Post',
+        //   content: 'This is the content of the second blog post.',
+        //   author: 'Jane Smith'
+        // },
+        // {
+        //   title: 'Third Blog Post',
+        //   content: 'This is the content of the third blog post.',
+        //   author: 'Bob Johnson'
+        // },
+        // {
+        //   title: 'First Blog Post',
+        //   content: 'This is the content of the first blog post.',
+        //   author: 'John Doe'
+        // },
+        // {
+        //   title: 'Second Blog Post',
+        //   content: 'This is the content of the second blog post.',
+        //   author: 'Jane Smith'
+        // },
+        // {
+        //   title: 'Third Blog Post',
+        //   content: 'This is the content of the third blog post.',
+        //   author: 'Bob Johnson'
+        // },
         // Add 12 more blog post objects here
       ];
     // then we delete every fruit in the database(all instances of this resource)

@@ -14,14 +14,14 @@ const { Schema, model } = mongoose
 
 // fruits schema
 const blogSchema = new Schema({
-    name: {
+    title: {
         type: String
     },
-    color: {
+    content: {
         type: String
     },
-    readyToEat: {
-        type: Boolean
+    author: {
+        type: String
     },
     owner: {
         // this is where we set up an objectId reference

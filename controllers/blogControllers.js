@@ -58,9 +58,9 @@ router.post('/', (req, res) => {
     // here we use a ternary operator to change the on value to send as true
     // otherwise, make that field false
     req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
-    const newFruit = req.body
-    console.log('this is req.body aka newFruit, after owner\n', newFruit)
-    Blog.create(newFruit)
+    const newBlog = req.body
+    console.log('this is req.body aka newBlog, after owner\n', newBlog)
+    Blog.create(newBlog)
         // send a 201 status, along with the json response of the new blog
         .then(blog => {
             // in the API server version of our code we sent json and a success msg
@@ -123,8 +123,8 @@ router.get('/json', (req, res) => {
 // shows the form for updating a blog
 router.get('/edit/:id', (req, res) => {
     // because we're editing a specific blog, we want to be able to access the blog's initial values. so we can use that info on the page.
-    const fruitId = req.params.id
-    Blog.findById(fruitId)
+    const blogId = req.params.id
+    Blog.findById(blogId)
         .then(blog => {
             res.render('blog/edit', { blog, ...req.session })
         })
@@ -137,7 +137,7 @@ router.get('/edit/:id', (req, res) => {
 // Update -> updates a specific blog(only if the blog's owner is updating)
 router.put('/:id', (req, res) => {
     const id = req.params.id
-    req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
+    req.body.title = req.body.title === 'on' ? true : false
     Blog.findById(id)
         .then(blog => {
             // if the owner of the blog is the person who is logged in
@@ -149,7 +149,7 @@ router.put('/:id', (req, res) => {
             } else {
                 // otherwise send a 401 unauthorized status
                 // res.sendStatus(401)
-                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20fruit`)
+                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20edit%20this%20blog`)
             }
         })
         .then(() => {
@@ -178,7 +178,7 @@ router.delete('/:id', (req, res) => {
             } else {
                 // otherwise send a 401 unauthorized status
                 // res.sendStatus(401)
-                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20delete%20this%20fruit`)
+                res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20delete%20this%20blog`)
             }
         })
         .then(() => {

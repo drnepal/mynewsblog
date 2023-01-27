@@ -89,7 +89,7 @@ router.get('/mine', (req, res) => {
         .then(blog => {
             // if found, display the blog
             // res.status(200).json({ blog: blog })
-            res.render('blogs/index', { blog, ...req.session })
+            res.render('blogs/index', { blogs, ...req.session })
         })
         .catch(err => {
             // otherwise throw an error

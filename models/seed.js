@@ -14,7 +14,7 @@ const db = mongoose.connection
 
 db.on('open', () => {
     // array of starter resources(blogs)
-    const Blog = [
+    const seedBlog = [
         {
           title: 'bp1',
           content: 'This is the content of the first blog post.',
@@ -23,7 +23,7 @@ db.on('open', () => {
         {
           title: 'bp2',
           content: 'This is the content of the second blog post.',
-          author: 'bw1'
+          author: 'bw2'
         },
         {
           title: 'bp3',
@@ -112,7 +112,7 @@ db.on('open', () => {
     Blog.deleteMany({ owner: null })
         .then(() => {
             // then we'll seed(create) our starter blogs
-            Blog.create(startBlogs)
+            Blog.create(seedBlog)
                 // tell our app what to do with success and failures
                 .then(data => {
                     console.log('here are the created blogs: \n', data)

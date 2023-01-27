@@ -24,10 +24,10 @@ router.get('/', (req, res) => {
         .populate('owner', 'username')
         .populate('comments.author', '-password')
         // send json if successful
-        .then(blog => { 
+        .then(blogs => { 
             // res.json({ blog: blog })
             // now that we have liquid installed, we're going to use render as a response for our controllers
-            res.render('blog/index', { blog, username, loggedIn, userId })
+            res.render('blogs/index', { blogs, username, loggedIn, userId })
         })
         // catch errors if they occur
         .catch(err => {
@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
 // GET for the new page
 // shows a form where a user can create a new blog
 router.get('/new', (req, res) => {
-    res.render('blog/new', { ...req.session })
+    res.render('blogs/new', { ...req.session })
 })
 
 // CREATE route
@@ -68,7 +68,7 @@ router.post('/', (req, res) => {
             // we could redirect to the 'mine' page
             // res.status(201).redirect('/blog/mine')
             // we could also redirect to the new blog's show page
-            res.redirect(`/blog/${blog.id}`)
+            res.redirect(`/blogs/${blog.id}`)
         })
         // send an error if one occurs
         .catch(err => {
@@ -89,7 +89,7 @@ router.get('/mine', (req, res) => {
         .then(blog => {
             // if found, display the blog
             // res.status(200).json({ blog: blog })
-            res.render('blog/index', { blog, ...req.session })
+            res.render('blogs/index', { blog, ...req.session })
         })
         .catch(err => {
             // otherwise throw an error
@@ -126,7 +126,7 @@ router.get('/edit/:id', (req, res) => {
     const blogId = req.params.id
     Blog.findById(blogId)
         .then(blog => {
-            res.render('blog/edit', { blog, ...req.session })
+            res.render('blogs/edit', { blogs, ...req.session })
         })
         .catch(err => {
             res.redirect(`/error?error=${err}`)
@@ -154,7 +154,7 @@ router.put('/:id', (req, res) => {
         })
         .then(() => {
             // console.log('the blog?', blog)
-            res.redirect(`/blog/mine`)
+            res.redirect(`/blogs/mine`)
         })
         .catch(err => {
             console.log(err)
@@ -182,7 +182,7 @@ router.delete('/:id', (req, res) => {
             }
         })
         .then(() => {
-            res.redirect('/blog/mine')
+            res.redirect('/blogs/mine')
         })
         .catch(err => {
             console.log(err)
@@ -202,7 +202,7 @@ router.get('/:id', (req, res) => {
         // send the blog as json upon success
         .then(blog => {
             // res.json({ blog: blog })
-            res.render('blog/show.liquid', {blog, ...req.session})
+            res.render('blogs/show.liquid', {blogs, ...req.session})
         })
         // catch any errors
         .catch(err => {

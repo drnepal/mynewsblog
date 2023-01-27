@@ -1,35 +1,14 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-    {% {% comment %}
-        
-    <div class="container-sm">
-        <form action="/blogs/{{blog.id}}?_method=PUT" method="POST">
-            <fieldset>
-                <legend>Edit {{ blog.name }}</legend>
-                <label class="form-label">Name:</label>
-                <input 
-                    type="text" class="form-control" 
-                    name="name" placeholder="What kind of blog is it?"
-                    required value="{{ blog.name }}"
-                >
-                <label class="form-label">Color:</label>
-                <input 
-                    type="color" class="form-control" 
-                    name="color" placeholder="What color is the blog?"
-                    required value="{{ blog.color }}"
-                >
-                <label class="form-label">Ready to Eat:</label>
-                <input 
-                    type="checkbox" class="form-check-control" 
-                    name="readyToEat"
-                    {% if blog.readyToEat %}
-                        checked
-                    {% endif %}
-                >
-            </fieldset>
-            <input type="submit" class="btn btn-success" value="Edit {{ blog.name }}">
-            <a href="/blogs/{{ blog.id }}" class="btn btn-warning">Back</a>
-        </form>
-    </div>
-{% endcomment %}
+<h1>Blog Posts</h1>
+<ul>
+  {% for blog in blogs %}
+    <li>
+      <h2>{{ blog.title }}</h2>
+      <p>{{ blog.content }}</p>
+      <p>Author: {{ blog.author }}</p>
+    </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}

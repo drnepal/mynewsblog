@@ -6,12 +6,12 @@
             {% if blogs.length > 0 %}
             <div class="row">
                 {% for blog in blogs %}
-                    <div class="card me-3 mb-3" style="width: 18rem;">
-                        <h5 class="card-header">{{blog.name}}</h5>
+                    <div class="card me-3 mb-3" style="width: 30rem;">
+                        <h5 class="card-header">{{blog.title}}</h5>
                         <div class="card-body">
                            
-                            <p class="card-text">The content of this {{blog.name}} is {{blog.content}}</p>
-                            <div class="colorBox mb-2" style="background-color: {{blog.content}}"></div>
+                            <p class="card-text">{{blog.author}}</p>
+                            <div class="colorBox mb-2" style="background-color: {{blog.author}}"></div>
                             <a href="/blogs/{{blog.id}}" class="btn btn-info">View {{blog.content}}</a>
                         </div>
                     </div>

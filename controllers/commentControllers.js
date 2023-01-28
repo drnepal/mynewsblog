@@ -20,14 +20,14 @@ const router = express.Router()
 // POST -> `/comments/<someFruitId>`
 // only loggedin users can post comments
 // bc we have to refer to a blog, we'll do that in the simplest way via the route
-router.post('/:fruitId', (req, res) => {
-    // first we get the fruitId and save to a variable
+router.post('/:blogId', (req, res) => {
+    // first we get the blogId and save to a variable
     const blogId = req.params.blogId
     // then we'll protect this route against non-logged in users
     console.log('this is the session\n', req.session)
     if (req.session.loggedIn) {
         // if logged in, make the logged in user the author of the comment
-        // this is exactly like how we added the owner to our fruits
+        // this is exactly like how we added the owner to our blogs
         req.body.author = req.session.userId
         // saves the req.body to a variable for easy reference later
         const theComment = req.body
@@ -42,7 +42,7 @@ router.post('/:fruitId', (req, res) => {
             // respond with a 201 and the blog itself
             .then(blog => {
                 // res.status(201).json({ blog: blog })
-                res.redirect(`/fruits/${blog.id}`)
+                res.redirect(`/blogs/${blog.id}`)
             })
             // catch and handle any errors
             .catch(err => {
@@ -52,19 +52,19 @@ router.post('/:fruitId', (req, res) => {
             })
     } else {
         // res.sendStatus(401) //send a 401-unauthorized
-        res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20comment%20on%20this%20fruit`)
+        res.redirect(`/error?error=You%20Are%20not%20allowed%20to%20comment%20on%20this%20blog`)
     }
 })
 
 // DELETE -> `/comments/delete/<someFruitId>/<someCommentId>`
 // make sure only the author of the comment can delete the comment
-router.delete('/delete/:fruitId/:commId', (req, res) => {
+router.delete('/delete/:blogId/:commId', (req, res) => {
     // isolate the ids and save to variables so we don't have to keep typing req.params
-    // const fruitId = req.params.fruitId
+    // const blogId = req.params.blogId
     // const commId = req.params.commId
-    const { fruitId, commId } = req.params
+    const { blogId, commId } = req.params
     // get the blog
-    Blog.findById(fruitd)
+    Blog.findById(blogd)
         .then(blog => {
             // get the comment, we'll use the built in subdoc method called .id()
             const theComment = blog.comments.id(commId)

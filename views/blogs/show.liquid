@@ -2,16 +2,13 @@
 {% block content %}
       <div class="container-md">
         <article>
-            <h2>{{blog.name}}</h2>
-            <h4>
-                {% if blog.readyToEat %}
-                    Ripe and Ready
-                {% else %}
-                    Not Ripe! Do Not Eat!
-                {% endif %}
-            </h4>
-            <h4>The color of the blog is: {{blog.color}}</h4>
-            <div class="colorBox" style="background-color: {{blog.color}}"></div>
+            <h2>{{blog.content}}</h2>
+          
+      
+           
+       
+            <h4>{{blog.title}}</h4>
+            <div class="colorBox" style="background-color: {{blog.content}}"></div>
             {% if blog.owner == userId %}
                 <hr>
                 <div class="btn-group">
@@ -19,9 +16,9 @@
                     first button will take us to the edit page
                     second will actually be a form, that calls our delete route
                   
-                    <a href="/blogs/edit/{{blog.id}}" class="btn btn-primary">Edit {{blog.name}}</a>
+                    <a href="/blogs/edit/{{blog.id}}" class="btn btn-primary">Edit {{blog.content}}</a>
                     <form action="/blogs/{{blog.id}}?_method=DELETE" method="POST">
-                        <input type="submit" class="btn btn-danger" value="Delete {{blog.name}}">
+                        <input type="submit" class="btn btn-danger" value="Delete {{blog.content}}">
                     </form>
                 </div>
             {% endif %}

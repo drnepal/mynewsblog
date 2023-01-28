@@ -57,12 +57,16 @@ router.post('/', (req, res) => {
     // we need to do a little js magic, to get our checkbox turned into a boolean
     // here we use a ternary operator to change the on value to send as true
     // otherwise, make that field false
-    req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
+
+
+    /////////////////////////////////IT NEEDS TO LOOK /////////////////////////////////////
+    // req.body.readyToEat = req.body.readyToEat === 'on' ? true : false
     const newBlog = req.body
     console.log('this is req.body aka newBlog, after owner\n', newBlog)
     Blog.create(newBlog)
         // send a 201 status, along with the json response of the new blog
         .then(blog => {
+            console.log(blog)
             // in the API server version of our code we sent json and a success msg
             // res.status(201).json({ blog: blog.toObject() })
             // we could redirect to the 'mine' page
@@ -89,7 +93,7 @@ router.get('/mine', (req, res) => {
         .then(blog => {
             // if found, display the blog
             // res.status(200).json({ blog: blog })
-            res.render('blogs/index', { blogs, ...req.session })
+            res.render('blogs/index', { blog, ...req.session })
         })
         .catch(err => {
             // otherwise throw an error
@@ -202,7 +206,7 @@ router.get('/:id', (req, res) => {
         // send the blog as json upon success
         .then(blog => {
             // res.json({ blog: blog })
-            res.render('blogs/show.liquid', {blogs, ...req.session})
+            res.render('blogs/show.liquid', {blog, ...req.session})
         })
         // catch any errors
         .catch(err => {

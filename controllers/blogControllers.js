@@ -87,13 +87,15 @@ router.post('/', (req, res) => {
 // this will only show the logged in user's blog
 router.get('/mine', (req, res) => {
     // find blog by ownership, using the req.session info
-    Blog.find({ owner: req.session.userId })
+    const { username, loggedIn, userId } = req.session
+    console.log(req.session)
+    Blog.find({ owner: userId })
         .populate('owner', 'username')
         .populate('comments.author', '-password')
         .then(blog => {
             // if found, display the blog
             // res.status(200).json({ blog: blog })
-            res.render('blogs/index', { blog, ...req.session })
+            res.render('blogs/mine', { blog, username, loggedIn })
         })
         .catch(err => {
             // otherwise throw an error
@@ -103,25 +105,25 @@ router.get('/mine', (req, res) => {
         })
 })
 
-// GET route for getting json for specific user blog
-// Index -> This is a user specific index route
-// this will only show the logged in user's blog
-router.get('/json', (req, res) => {
-    // find blog by ownership, using the req.session info
-    Blog.find({ owner: req.session.userId })
-        .populate('owner', 'username')
-        .populate('comments.author', '-password')
-        .then(blog => {
-            // if found, display the blog
-            res.status(200).json({ blog: blog })
-            // res.render('blog/index', { blog, ...req.session })
-        })
-        .catch(err => {
-            // otherwise throw an error
-            console.log(err)
-            res.status(400).json(err)
-        })
-})
+// // GET route for getting json for specific user blog
+// // Index -> This is a user specific index route
+// // this will only show the logged in user's blog
+// router.get('/json', (req, res) => {
+//     // find blog by ownership, using the req.session info
+//     Blog.find({ owner: req.session.userId })
+//         .populate('owner', 'username')
+//         .populate('comments.author', '-password')
+//         .then(blog => {
+//             // if found, display the blog
+//             res.status(200).json({ blog: blog })
+//             // res.render('blog/index', { blog, ...req.session })
+//         })
+//         .catch(err => {
+//             // otherwise throw an error
+//             console.log(err)
+//             res.status(400).json(err)
+//         })
+// })
 
 // GET request -> edit route
 // shows the form for updating a blog

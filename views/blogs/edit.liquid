@@ -1,14 +1,32 @@
 {% layout 'layout.liquid' %}
 {% block content %}
-<h1>Blog Posts</h1>
-<ul>
-  {% for blog in blogs %}
-    <li>
-      <h2>{{ blog.title }}</h2>
-      <p>{{ blog.content }}</p>
-      <p>Author: {{ blog.author }}</p>
-    </li>
-  {% endfor %}
-</ul>
-
+    <div class="container-sm">
+        <form action="/blogs/{{blog.id}}?_method=PUT" method="POST">
+            <fieldset>
+                <legend>Edit {{ blog.title }}</legend>
+                <label class="form-label">Title:</label>
+                <input 
+                    type="text" class="form-control" 
+                    name="name" placeholder="The title of the blog"
+                    required value="{{ blog.title }}"
+                >
+                <label class="form-label">Article:</label>
+                <input 
+                    type="text" class="form-control" 
+                    name="content" placeholder="content"
+                    required value="{{ blog.content }}"
+                >
+                <label class="form-label">Author</label>
+                <input 
+                    type="text" class="form-check-control" 
+                    name="author"
+                    {% if blog.author %}
+                        checked
+                    {% endif %}
+                >
+            </fieldset>
+            <input type="submit" class="btn btn-success" value="Edit {{ blog.title }}">
+            <a href="/blogs/{{ blog.id }}" class="btn btn-warning">Back</a>
+        </form>
+    </div>
 {% endblock %}

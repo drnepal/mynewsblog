@@ -2,7 +2,6 @@
 {% block content %}
   
         <div class="container-md">
-            <h2>Blogs</h2>
             {% if blogs.length > 0 %}
             <div class="row">
                 {% for blog in blogs %}
@@ -20,7 +19,7 @@
         </div>
     {% else %}
         <div class="container-md">
-            <h2>No blogs yet... Go create some!</h2>
+            <h2>Write Some Articles....</h2>
         </div>
     {% endif %}
 {% endblock %}

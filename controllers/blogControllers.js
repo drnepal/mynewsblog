@@ -105,25 +105,25 @@ router.get('/mine', (req, res) => {
         })
 })
 
-// // GET route for getting json for specific user blog
-// // Index -> This is a user specific index route
-// // this will only show the logged in user's blog
-// router.get('/json', (req, res) => {
-//     // find blog by ownership, using the req.session info
-//     Blog.find({ owner: req.session.userId })
-//         .populate('owner', 'username')
-//         .populate('comments.author', '-password')
-//         .then(blog => {
-//             // if found, display the blog
-//             res.status(200).json({ blog: blog })
-//             // res.render('blog/index', { blog, ...req.session })
-//         })
-//         .catch(err => {
-//             // otherwise throw an error
-//             console.log(err)
-//             res.status(400).json(err)
-//         })
-// })
+// GET route for getting json for specific user blog
+// Index -> This is a user specific index route
+// this will only show the logged in user's blog
+router.get('/json', (req, res) => {
+    // find blog by ownership, using the req.session info
+    Blog.find({ owner: req.session.userId })
+        .populate('owner', 'username')
+        .populate('comments.author', '-password')
+        .then(blog => {
+            // if found, display the blog
+            res.status(200).json({ blog: blog })
+            // res.render('blog/index', { blog, ...req.session })
+        })
+        .catch(err => {
+            // otherwise throw an error
+            console.log(err)
+            res.status(400).json(err)
+        })
+})
 
 // GET request -> edit route
 // shows the form for updating a blog
@@ -132,7 +132,7 @@ router.get('/edit/:id', (req, res) => {
     const blogId = req.params.id
     Blog.findById(blogId)
         .then(blog => {
-            res.render('blogs/edit', { blogs, ...req.session })
+            res.render('blogs/edit', { blog, ...req.session })
         })
         .catch(err => {
             res.redirect(`/error?error=${err}`)

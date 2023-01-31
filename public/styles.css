@@ -1,5 +1,5 @@
 body {
-    background-color: beige;
+    background: linear-gradient(rgb(187, 241, 192), rgb(189, 161, 245), rgba(166, 43, 72, 0.174));
 }
 
 /* .colorBox {

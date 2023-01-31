@@ -4,17 +4,13 @@
   <div class="container-md">
     {% if blogs.length > 0 %}
       <div class="row">
-        {% for blog in blogs %}
+        {% for blog in blogs.blog %}
           <div class="card me-3 mb-3" style="width: 30rem;">
             <h5 class="card-header">{{ blog.title }}</h5>
             <h6>{{ blog.content }}</h6>
             <h6>{{ blog.author }}</h6>
 
-            <div class="card-body">
-
-              <p class="card-text">{{ blog.author }}</p>
-              <a href="/blogs/{{blog.id}}" class="btn btn-info">Details:{{ blog.content }}</a>
-            </div>
+           
           </div>
         {% endfor %}
       </div>

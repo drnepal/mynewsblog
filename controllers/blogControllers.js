@@ -84,18 +84,16 @@ router.post('/', (req, res) => {
 
 // GET route
 // Index -> This is a user specific index route
-// this will only show the logged in user's blog
+// this will only show the logged in user's blogs
 router.get('/mine', (req, res) => {
-    // find blog by ownership, using the req.session info
-    const { username, loggedIn, userId } = req.session
-    console.log(req.session)
-    Blog.find({ owner: userId })
+    // find blogs by ownership, using the req.session info
+    Blog.find({ owner: req.session.userId })
         .populate('owner', 'username')
         .populate('comments.author', '-password')
-        .then(blog => {
-            // if found, display the blog
-            // res.status(200).json({ blog: blog })
-            res.render('blogs/mine', { blog, username, loggedIn })
+        .then(blogs => {
+            // if found, display the blogs
+            // res.status(200).json({ blogs: blogs })
+            res.render('blogs/index', { blogs, ...req.session })
         })
         .catch(err => {
             // otherwise throw an error

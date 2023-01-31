@@ -16,9 +16,21 @@ db.on('open', () => {
     // array of starter resources(blogs)
     const seedBlog = [
         {
-          title: 'bp1',
+          title: 'nodejs',
           content: 'This is the content of the first blog post.',
-          author: 'bw1'
+          author: 'wiki'
+        },
+        {title:What Does Lorem Ipsum Mean?
+          Lorem ipsum, in graphical and textual context, refers to filler text that 
+          is placed in a document or 
+          visual presentation. Lorem ipsum is derived from 
+          the Latin "dolorem ipsum" roughly translated as "pain itself."
+          
+          Lorem ipsum presents the sample font and orientatin
+          of writing on web pages and other software applications where 
+          content is not the main concern of the developer.
+           
+          author:google
         },
         {
           title: 'bp2',
@@ -51,9 +63,9 @@ db.on('open', () => {
           author: 'bw6'
         },
         {
-          title: 'bp7',
+          title: 'bp9',
           content: 'This is the content of the second blog post.',
-          author: 'bw7'
+          author: 'bw9'
         },
         // {
         //   title: 'Third Blog Post',

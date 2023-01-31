@@ -64,7 +64,7 @@ router.delete('/delete/:blogId/:commId', (req, res) => {
     // const commId = req.params.commId
     const { blogId, commId } = req.params
     // get the blog
-    Blog.findById(blogd)
+    Blog.findById(blogId)
         .then(blog => {
             // get the comment, we'll use the built in subdoc method called .id()
             const theComment = blog.comments.id(commId)

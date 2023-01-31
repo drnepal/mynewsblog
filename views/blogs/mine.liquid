@@ -4,7 +4,7 @@
   <div class="container-md">
     {% if blogs.length > 0 %}
       <div class="row">
-        {% for blog in blogs.blog %}
+        {% for blog in blogs %}
           <div class="card me-3 mb-3" style="width: 30rem;">
             <h5 class="card-header">{{ blog.title }}</h5>
             <h6>{{ blog.content }}</h6>

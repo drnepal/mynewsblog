@@ -18,6 +18,8 @@ Inspired to write this project as I didnt find the any blog posts that covers va
 <li>Mongoose</li>
 </ol>
 </hr>
+_______________________________________________________
+
 <h4>As a user I want the ability to </h4>
 
 <ul>
@@ -27,8 +29,9 @@ Inspired to write this project as I didnt find the any blog posts that covers va
 <li>Comment</li>
 <li>Delete Comments</li>
 <li>Edit Posts</li>
+
 </ul>
-</hr>
+<hr>
 
 ![Alt text](images/sign_inhot%202023-02-01%20at%201.08.54%20PM.png)
 
@@ -40,8 +43,47 @@ Inspired to write this project as I didnt find the any blog posts that covers va
 
 ![Alt text](images/Screenshot%202023-02-01%20at%208.35.21%20AM.png)
 
-</hr>
+<hr>
 
-<p>ERD</p>
 
+
+## Route tables for documents
+
+#### blogs
+
+| **URL**          | **HTTP Verb**|**Action**|
+|------------------|--------------|----------|
+| /blogs/         | GET          | index  
+| /blogs/:id      | GET          | show       
+| /blogs/new      | GET          | new   
+| /blogs          | POST         | create   
+| /blogs/:id/edit | GET          | edit       
+| /blogs/:id      | PATCH/PUT    | update    
+| /blogs/:id      | DELETE       | destroy  
+
+#### Comments
+
+| **URL**          | **HTTP Verb**|**Action**|
+|--------------------|--------------|----------|
+| /comments/:blogId | POST         | create  
+| /comments/delete/:blogId/:commentId      | DELETE          | destroy       
+
+
+#### Users
+
+| **URL**          | **HTTP Verb**|**Action**|
+|------------------|--------------|----------|
+| /users/signup    | GET         | new  
+| /users/signup    | POST         | create  
+| /users/login     | GET         | login       
+| /users/login     | POST         | create       
+| /users/logout    | DELETE       | destroy 
+
+
+<hr>
+
+ 
+                     ERD
+
+  ![Alt text](images/thumbnail.jpeg)
 

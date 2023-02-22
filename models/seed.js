@@ -6,6 +6,7 @@ const Blog = require('./blog')
 
 // Here, we'll add our seed script
 // this will seed our database for us, just like our seed route did
+mongoose.set('strictQuery', true);
 // 
 //// Seed Script code            ////
 /////////////////////////////////////
@@ -86,54 +87,54 @@ db.on('open', () => {
             content: "This is the content of the first blog post.",
             author: "wiki"
           },
-          // {
-          //   title: "lorem_ipsum",
-          //   content: "Lorem ipsum presents the sample font and orientation of writing on web pages and other software applications where content is not the main concern of the"
-          //   author: "google"
-          // }
-                    {
-          title: 'bp2',
-          content: 'This is the content of the second blog post.',
-          author: 'bw2'
-        },
-        {
-          title: 'bp3',
-          content: 'This is the content of the third blog post.',
-          author: 'bw3 '
-        },
-        {
-          title: "First Blog Post",
-          content: 'This is the content of the first blog post.',
-          author: 'bw4'
-        },
-        {
-          title: 'bp4',
-          content: 'This is the content of the second blog post.',
-          author: 'bw5'
-        },
-        {
-          title: 'bp5',
-          content: 'This is the content of the third blog post.',
-          author: 'bw5'
-        },
-        {
-          title: 'bp6',
-          content: 'This is the content of the first blog post.',
-          author: 'bw6'
-        },
-        // {
-        //   title: "ML",
-        //   content:"Introduction to Machine Learning: Machine learning is a type of 
-        //   artificial intelligence that allows software applications
-        //    to become more accurate in predicting outcomes without being 
-        //    explicitly programmed.",
-        //    author:"search"
+        //   // {
+        //   //   title: "lorem_ipsum",
+        //   //   content: "Lorem ipsum presents the sample font and orientation of writing on web pages and other software applications where content is not the main concern of the"
+        //   //   author: "google"
+        //   // }
+        //             {
+        //   title: 'bp2',
+        //   content: 'This is the content of the second blog post.',
+        //   author: 'bw2'
         // },
-        {
-          title: 'bp9',
-          content: 'This is the content of the second blog post.',
-          author: 'bw9'
-        }
+        // {
+        //   title: 'bp3',
+        //   content: 'This is the content of the third blog post.',
+        //   author: 'bw3 '
+        // },
+        // {
+        //   title: "First Blog Post",
+        //   content: 'This is the content of the first blog post.',
+        //   author: 'bw4'
+        // },
+        // {
+        //   title: 'bp4',
+        //   content: 'This is the content of the second blog post.',
+        //   author: 'bw5'
+        // },
+        // {
+        //   title: 'bp5',
+        //   content: 'This is the content of the third blog post.',
+        //   author: 'bw5'
+        // },
+        // {
+        //   title: 'bp6',
+        //   content: 'This is the content of the first blog post.',
+        //   author: 'bw6'
+        // },
+        // // {
+        // //   title: "ML",
+        // //   content:"Introduction to Machine Learning: Machine learning is a type of 
+        // //   artificial intelligence that allows software applications
+        // //    to become more accurate in predicting outcomes without being 
+        // //    explicitly programmed.",
+        // //    author:"search"
+        // // },
+        // {
+        //   title: 'bp9',
+        //   content: 'This is the content of the second blog post.',
+        //   author: 'bw9'
+        // }
       ];
     // then we delete every fruit in the database(all instances of this resource)
     // this will delete any blogs that are not owned by a user

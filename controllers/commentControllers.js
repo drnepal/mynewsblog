@@ -17,7 +17,7 @@ const router = express.Router()
 
 // This also means, that when we make a subdocument, we must MUST refer to the parent so that mongoose knows where in mongodb to store this subdocument
 
-// POST -> `/comments/<someFruitId>`
+// POST -> `/comments/<someBlogId>`
 // only loggedin users can post comments
 // bc we have to refer to a blog, we'll do that in the simplest way via the route
 router.post('/:blogId', (req, res) => {

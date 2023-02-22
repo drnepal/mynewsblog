@@ -1,5 +1,5 @@
 //////////////////////////////////////////////////////////////
-//// Our schema and model for the fruit resource          ////
+//// Our schema and model for the blog resource          ////
 //////////////////////////////////////////////////////////////
 // This is the old mongoose import
 // const mongoose = require('mongoose') // import mongoose
@@ -12,7 +12,7 @@ const commentSchema = require('./comment')
 // we'll destructure the Schema and model functions from mongoose
 const { Schema, model } = mongoose
 
-// fruits schema
+// blogs schema
 const blogSchema = new Schema({
     title: {
         type: String
@@ -33,7 +33,7 @@ const blogSchema = new Schema({
     comments: [commentSchema]
 }, { timestamps: true })
 
-// make the fruit model
+// make the blog model
 // the model method takes two arguments
 // the first is what we call our model
 // the second is the schema used to build the model

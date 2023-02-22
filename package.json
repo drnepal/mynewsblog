@@ -1,7 +1,7 @@
 {
-  "name": "mvc_fruits_fullstack",
+  "name": "mvc_blogs_fullstack",
   "version": "1.0.0",
-  "description": "small full stack app for fruits with comments",
+  "description": "small full stack app for blogs with comments",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
